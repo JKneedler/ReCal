@@ -1,0 +1,262 @@
+body {
+  margin: 0px;
+  overflow-y: hidden;
+}
+
+#program {
+  width: 100%;
+  height: 100%;
+}
+
+#selectorTable {
+  width: 100%;
+  table-layout: fixed;
+  color: white;
+}
+
+#mainSelectors {
+  background-color: gray;
+  width: 400px;
+  height: 30px;
+}
+
+#cal {
+  width: 100%;
+  height: 80%;
+  table-layout: fixed;
+}
+
+.week {
+  width: 10%;
+  height: 10%;
+}
+
+#smallCal td {
+  text-align: center;
+}
+
+#calHeaderTable {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#year {
+  font-size: 16px;
+}
+
+#month {
+  font-size: 24px;
+}
+
+#calHeader {
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: #e52929;
+}
+
+#weekDaysTable {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  font-size: 50%;
+}
+
+#weekDays {
+  height: 5%;
+  background-color: #e52929;
+}
+
+#smallCal {
+  background-color: #d6d6d6;
+  width: 300px;
+  height: 300px;
+}
+
+.timeInput {
+  width: 30px;
+}
+
+#leftPanel {
+  width: 300px;
+  height: 100%;
+  position: fixed!important;
+  overflow: auto;
+  z-index: 1;
+  background-color: #c1c1c1;
+}
+
+#rightPanel {
+  margin-left: 300px;
+  top: 0px;
+  height: 100%;
+  width: auto;
+  background-color: red;
+  position: relative;
+  box-sizing: border-box;
+  border-left: 1px solid black;
+}
+
+#optionsBar {
+  background-color: #c1c1c1;
+  height: 70px;
+  border-bottom: 1px solid black;
+}
+
+#bigCalView {
+  background-color: #c1c1c1;
+  width: inherit;
+  position: absolute;
+  top: 71px;
+  bottom: 0px;
+}
+
+#bigTodoView {
+  background-color: green;
+  width: 100%;
+  height: 100%;
+}
+
+#bigWeekViewTable {
+  table-layout: fixed;
+  height: auto;
+  width: 100%;
+}
+
+#bigWeekViewHours {
+  overflow-y: scroll;
+  top: 100px;
+  bottom: 0px;
+  padding: 0px;
+  position: absolute;
+  outline: 1px solid black;
+}
+
+#bigWeekViewTable td {
+  border-spacing: 1px;
+  border-right: 1px solid black;
+}
+
+#weekViewDatesTable {
+  table-layout: fixed;
+  height: 100px;
+  width: 100%;
+}
+
+#weekViewDatesTable td {
+  height: 100%;
+  border-right: 1px solid black;
+  padding-left: 20px;
+}
+
+#weekViewDates {
+  margin-left: 52px;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+
+#bigWeekViewEvents {
+  width: auto;
+}
+
+#hourLabelsTableData {
+  width: 50px;
+  height: auto;
+  padding: 0px;
+}
+
+#hourLabels {
+  position: relative;
+  width: 50px;
+  height: 1140px;
+}
+
+.weekViewDayOfWeek {
+
+}
+
+.weekViewDateLabel {
+  font-size: 45px;
+  text-align: left;
+}
+
+.weekViewEvents {
+  padding: 0;
+  position: relative;
+  height: 1140px;
+  top: 0px;
+}
+
+.weekViewEvents hr {
+  border-top: 1px solid black;
+}
+
+.prevMonthDay, .nextMonthDay {
+  color: #999999;
+}
+
+#testDiv {
+  background-color: blue;
+  z-index: 1;
+  top: 35px;
+  height: 336px;
+  width: 100%;
+  position: absolute;
+}
+
+.eventNode {
+  background-color: #ea6060;
+  z-index: 1;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  color: white;
+  padding-left: 10px;
+}
+
+.eventNode p {
+  top: -7px;
+  float: left;
+  position: absolute;
+}
+
+.eventNode span {
+  right: 5px;
+  top: -2px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  padding-top: 100px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  height: 300px;
+  width: 80%;
+  background-color: white;
+  margin: auto;
+}
+
+.eventDeleteButton {
+  float: right;
+  display: none;
+  color: #ea7979;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.eventDeleteButton:hover,
+.eventDeleteButton:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

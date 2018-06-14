@@ -1,0 +1,263 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="datePickerStyle.css" />
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calendar Display</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="eventObject.js"></script>
+    <script>
+      $( function() {
+        $( "#datepicker1" ).datepicker();
+      } );
+      $( function() {
+        $( "#datepicker2" ).datepicker();
+      } );
+    </script>
+  </head>
+  <body onload=LoadProgram()>
+    <div id="program">
+      <div id="leftPanel">
+        <div id="smallCal">
+          <div id="calHeader">
+            <table id="calHeaderTable">
+              <tr>
+                <td style="text-align:left;" onclick=ChangeMonth(0)><</td>
+                <td><span id="month">Month</span><br><span id="year">Year</span></td>
+                <td style="text-align:right;" onclick=ChangeMonth(1)>></td>
+              </tr>
+            </table>
+          </div>
+          <div id="weekDays">
+            <table id="weekDaysTable">
+          <tr>
+            <td id="week0">S</td>
+            <td id="week1">M</td>
+            <td id="week2">T</td>
+            <td id="week3">W</td>
+            <td id="week4">T</td>
+            <td id="week5">F</td>
+            <td id="week6">S</td>
+          </tr>
+        </table>
+          </div>
+          <table id="cal">
+            <tr class="week">
+              <td id="0" onclick="ClickedDate(0)">0</td>
+              <td id="1" onclick="ClickedDate(1)">1</td>
+              <td id="2" onclick="ClickedDate(2)">2</td>
+              <td id="3" onclick="ClickedDate(3)">3</td>
+              <td id="4" onclick="ClickedDate(4)">4</td>
+              <td id="5" onclick="ClickedDate(5)">5</td>
+              <td id="6" onclick="ClickedDate(6)">6</td>
+            </tr>
+            <tr class="week">
+              <td id="7" onclick="ClickedDate(7)">0</td>
+              <td id="8" onclick="ClickedDate(8)">1</td>
+              <td id="9" onclick="ClickedDate(9)">2</td>
+              <td id="10" onclick="ClickedDate(10)">3</td>
+              <td id="11" onclick="ClickedDate(11)">4</td>
+              <td id="12" onclick="ClickedDate(12)">5</td>
+              <td id="13" onclick="ClickedDate(13)">6</td>
+            </tr>
+            <tr class="week">
+              <td id="14" onclick="ClickedDate(14)">0</td>
+              <td id="15" onclick="ClickedDate(15)">1</td>
+              <td id="16" onclick="ClickedDate(16)">2</td>
+              <td id="17" onclick="ClickedDate(17)">3</td>
+              <td id="18" onclick="ClickedDate(18)">4</td>
+              <td id="19" onclick="ClickedDate(19)">5</td>
+              <td id="20" onclick="ClickedDate(20)">6</td>
+            </tr>
+            <tr class="week">
+              <td id="21" onclick="ClickedDate(21)">0</td>
+              <td id="22" onclick="ClickedDate(22)">1</td>
+              <td id="23" onclick="ClickedDate(23)">2</td>
+              <td id="24" onclick="ClickedDate(24)">3</td>
+              <td id="25" onclick="ClickedDate(25)">4</td>
+              <td id="26" onclick="ClickedDate(26)">5</td>
+              <td id="27" onclick="ClickedDate(27)">6</td>
+            </tr>
+            <tr class="week">
+              <td id="28" onclick="ClickedDate(28)">0</td>
+              <td id="29" onclick="ClickedDate(29)">1</td>
+              <td id="30" onclick="ClickedDate(30)">2</td>
+              <td id="31" onclick="ClickedDate(31)">3</td>
+              <td id="32" onclick="ClickedDate(32)">4</td>
+              <td id="33" onclick="ClickedDate(33)">5</td>
+              <td id="34" onclick="ClickedDate(34)">6</td>
+            </tr>
+            <tr class="week">
+              <td id="35" onclick="ClickedDate(35)">0</td>
+              <td id="36" onclick="ClickedDate(36)">1</td>
+              <td id="37" onclick="ClickedDate(37)">2</td>
+              <td id="38" onclick="ClickedDate(38)">3</td>
+              <td id="39" onclick="ClickedDate(39)">4</td>
+              <td id="40" onclick="ClickedDate(40)">5</td>
+              <td id="41" onclick="ClickedDate(41)">6</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="rightPanel">
+        <div id="optionsBar">
+          <button id="testSwitch" onclick="switchView()">TestSwitch</button>
+        </div>
+        <div id="bigCalView">
+            <div id="weekViewDates">
+              <table id="weekViewDatesTable">
+                <tr>
+                  <td>
+                    <div id="weekViewDateDiv0">
+                      <p><span class="weekViewDateLabel" id="weekViewDate0">1</span></p>
+                      <p><span class="weekViewDayOfWeek">Sunday</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="weekViewDateDiv1">
+                      <p><span class="weekViewDateLabel" id="weekViewDate1">2</span></p>
+                      <p><span class="weekViewDayOfWeek">Monday</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="weekViewDateDiv2">
+                      <p><span class="weekViewDateLabel" id="weekViewDate2">3</span></p>
+                      <p><span class="weekViewDayOfWeek">Tuesday</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="weekViewDateDiv3">
+                      <p><span class="weekViewDateLabel" id="weekViewDate3">4</span></p>
+                      <p><span class="weekViewDayOfWeek">Wednesday</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="weekViewDateDiv4">
+                      <p><span class="weekViewDateLabel" id="weekViewDate4">5</span></p>
+                      <p><span class="weekViewDayOfWeek">Thursday</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="weekViewDateDiv5">
+                      <p><span class="weekViewDateLabel" id="weekViewDate5">6</span></p>
+                      <p><span class="weekViewDayOfWeek">Friday</span></p>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="weekViewDateDiv6">
+                      <p><span class="weekViewDateLabel" id="weekViewDate6">7</span></p>
+                      <p><span class="weekViewDayOfWeek">Saturday</span></p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div id="bigWeekViewHours">
+              <div id="bigWeekViewEvents" onmousemove="TrackMouseMove(event)">
+                <table id="bigWeekViewTable">
+                  <tr>
+                    <td id="hourLabelsTableData">
+                      <div id="hourLabels">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView0">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView1">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView2">
+
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView3">
+
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView4">
+
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView5">
+
+                      </div>
+                    </td>
+                    <td>
+                      <div class="weekViewEvents" id="bigWeekView6">
+
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+          </div>
+        </div>
+        <div id="bigTodoView" style="display:none">
+
+        </div>
+      </div>
+      <!-- <div id="smallTodo">
+        <div id="mainSelectors">
+          <table id="selectorTable">
+            <tr>
+              <td>Calendar</td>
+              <td>To-do</td>
+            </tr>
+          </table>
+        </div>
+      </div> -->
+    </div>
+    <div id="eventModal" class="modal">
+      <div id="eventModalContent" class="modalContent">
+        <p>
+          Title: <input type="textfield" id="eventTitle" /><br>
+        </p>
+        <p>Start Time:
+          <input type="textfield" id="startHour" class="timeInput"/>
+           :
+          <input type="textfield" id="startMinute" class="timeInput"/>am
+          <input type="radio" name="ampm1" id="startam" />pm
+          <input type="radio" name="ampm1" id="startpm" />
+          Date:<input type="text" id="datepicker1">
+        </p>
+        <p>End Time:
+          <input type="textfield" id="endHour" class="timeInput"/>
+           :
+          <input type="textfield" id="endMinute" class="timeInput" />am
+          <input type="radio" name="ampm2" id="endam" />pm
+          <input type="radio" name="ampm2
+
+          " id="endpm" />
+          Date:<input type="text" id="datepicker2">
+        </p>
+        Description: <input type="textfield" id="description" /><br>
+        <button id="saveEventButton">Save Event</button>
+        <ul id="testlist">
+          <li>
+            <p>first</p>
+          </li>
+        </ul>
+        <button type="button" onclick="addItem()">Add Item</button>
+        <button type="button" onclick="removeItem()">Remove Item</button>
+      </div>
+    </div>
+    <div id="deleteModal" class="modal">
+      <div id="deleteModalContent" class="modalContent">
+        <h1>Are you sure you want to delete this event?</h1>
+        <button type="button" onclick="DeleteEvent()">Delete</button>
+        <button type="button" onclick="CloseModal()">Cancel</button>
+      </div>
+    </div>
+    <script src="Calendar.js"></script>
+  </body>
+</html>
